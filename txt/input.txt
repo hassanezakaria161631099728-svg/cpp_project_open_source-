@@ -4,16 +4,6 @@ L 6
 E 2.0E11
 I 8.5E-6
 FLOORS 10
-# Stations where we want results
-STATIONS
-0
-1
-2
-3
-4
-5
-6
-END
 
 
 
