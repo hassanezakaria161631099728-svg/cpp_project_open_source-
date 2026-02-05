@@ -4,15 +4,14 @@
 int main()
 {
     // 1. Read TXT
-    BeamData data = readInput("input.txt");
+    BeamData d = readInput("input.txt");
 
     // 2. Calculate
     // old beam part
-    auto def = computeDeflection(data);
+    double delta = computeDeflection(d);
     // new: stiffness
-    auto K = createStiffnessMatrix(data.nFloors);
+    auto K = createStiffnessMatrix(d.nFloors);
     // 3. Write results
-    writeOutput("output.txt", data.stations, def);
-    writeMatrix("stiffness.txt",K);
+    writeOutput("output.txt", delta, K);
     return 0;
 }

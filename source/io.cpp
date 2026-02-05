@@ -22,67 +22,49 @@ BeamData readInput(const std::string& filename)
         else if(word == "E") file >> d.E;
         else if(word == "I") file >> d.I;
         else if(word == "FLOORS") file >> d.nFloors;
-
-        else if(word == "STATIONS")
-        {
-            double x;
-            while(file >> x)
-            {
-                d.stations.push_back(x);
-
-                // stop when END appears
-                if(file.peek() == 'E') break;
-            }
-        }
     }
 
     return d;
 }
 
-void writeOutput(const std::string& filename,
-                 const std::vector<double>& x,
-                 const std::vector<double>& def)
-{
-    std::ofstream file(filename);
-
-    file << "X  Deflection\n";
-
-    for(size_t i=0; i<x.size(); i++)
-    {
-        file << x[i] << "  " << def[i] << "\n";
-    }
-}
-
 #include <iomanip>     // VERY IMPORTANT
 
-void writeMatrix(const std::string& filename,
-                 const std::vector<std::vector<double>>& K)
+
+void writeOutput(const std::string& filename,
+                  double deflection,
+                  const std::vector<std::vector<double>>& K)
 {
     std::ofstream file(filename);
+
+    file << "============================\n";
+    file << "      STRUCTURAL RESULTS    \n";
+    file << "============================\n\n";
+
+    // ---- DEFLECTION PART ----
+    file << "DEFLECTION RESULT\n";
+    file << "-----------------\n";
+    file << "Deflection = " << deflection << "\n\n";
+
+    // ---- STIFFNESS MATRIX ----
+    file << "STIFFNESS MATRIX\n";
+    file << "----------------\n\n";
 
     int n = K.size();
 
-    file << "STIFFNESS MATRIX\n\n";
-
-    // ===== HEADER =====
+    // Header
     file << std::setw(10) << " ";
-
     for(int j=1; j<=n; j++)
-    {
         file << std::setw(10) << ("mod" + std::to_string(j));
-    }
 
     file << "\n";
 
-    // ===== MATRIX =====
+    // Matrix rows
     for(int i=1; i<=n; i++)
     {
         file << std::setw(10) << ("floor" + std::to_string(i));
 
         for(int j=1; j<=n; j++)
-        {
             file << std::setw(10) << K[i-1][j-1];
-        }
 
         file << "\n";
     }
