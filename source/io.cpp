@@ -53,19 +53,40 @@ void writeOutput(const std::string& filename,
     }
 }
 
+#include <iomanip>     // VERY IMPORTANT
+
 void writeMatrix(const std::string& filename,
                  const std::vector<std::vector<double>>& K)
 {
     std::ofstream file(filename);
 
-    file << "STIFFNESS MATRIX\n";
+    int n = K.size();
 
-    for(size_t i=0; i<K.size(); i++)
+    file << "STIFFNESS MATRIX\n\n";
+
+    // ===== HEADER =====
+    file << std::setw(10) << " ";
+
+    for(int j=1; j<=n; j++)
     {
-        for(size_t j=0; j<K[i].size(); j++)
+        file << std::setw(10) << ("mod" + std::to_string(j));
+    }
+
+    file << "\n";
+
+    // ===== MATRIX =====
+    for(int i=1; i<=n; i++)
+    {
+        file << std::setw(10) << ("floor" + std::to_string(i));
+
+        for(int j=1; j<=n; j++)
         {
-            file << K[i][j] << " ";
+            file << std::setw(10) << K[i-1][j-1];
         }
+
         file << "\n";
     }
+
+    file.close();
 }
+
