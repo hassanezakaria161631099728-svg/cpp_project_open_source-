@@ -37,6 +37,8 @@
 		<Unit filename="io.cpp" />
 		<Unit filename="io.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="stiffness.cpp" />
+		<Unit filename="stiffness.h" />
 		<Unit filename="structs.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

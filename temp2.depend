@@ -1,28 +1,28 @@
 # depslib dependency file v1.0
-1770123445 source:c:\users\sg info\documents\m1str 23-24\project\temp2\beam.cpp
+1770253417 source:c:\users\sg info\documents\m1str 23-24\project\temp2\beam.cpp
 	"beam.h"
 	<cmath>
 
-1770123395 c:\users\sg info\documents\m1str 23-24\project\temp2\beam.h
+1770253562 c:\users\sg info\documents\m1str 23-24\project\temp2\beam.h
 	"structs.h"
-	<vector>
 
 1770163557 c:\users\sg info\documents\m1str 23-24\project\temp2\structs.h
 	<vector>
 
-1770164110 source:c:\users\sg info\documents\m1str 23-24\project\temp2\io.cpp
+1770253159 source:c:\users\sg info\documents\m1str 23-24\project\temp2\io.cpp
 	"io.h"
 	<fstream>
 	<iostream>
+	<iomanip>
 
-1770164036 c:\users\sg info\documents\m1str 23-24\project\temp2\io.h
+1770254840 c:\users\sg info\documents\m1str 23-24\project\temp2\io.h
 	"structs.h"
 	<string>
 
-1770165428 source:c:\users\sg info\documents\m1str 23-24\project\temp2\stiffness.cpp
+1770248745 source:c:\users\sg info\documents\m1str 23-24\project\temp2\stiffness.cpp
 	"stiffness.h"
 
-1770163916 c:\users\sg info\documents\m1str 23-24\project\temp2\stiffness.h
+1770248787 c:\users\sg info\documents\m1str 23-24\project\temp2\stiffness.h
 	<vector>
 
 1770164927 source:c:\users\sg info\documents\m1str 23-24\project\temp2\main.cpp
