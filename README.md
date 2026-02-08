@@ -8,6 +8,10 @@ or keep a safety copy at another folder in your device as security measure
 
 the purpose of this project is for civil engineering to calculate the stiffness matrix of a multi floors building
 
+notice: temp2  .depend  .cbp  .layout only exist in code blocks IDE 
+for vscode they don't exist they are not necessary in vscode IDE
+IDE integrated developpement environment 
+
 if you need anymore details I forgot to mention here contact me by the available options:
 email: hassanezakaria161631099728@gmail.com
 facebook : https://www.facebook.com/hassane.zakaria.179930#
