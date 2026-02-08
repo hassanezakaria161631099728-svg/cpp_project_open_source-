@@ -1,0 +1,51 @@
+function [M,phi,Mk,Mk1,tableCF,table,Txs,Tys,lx,ly]=dynamic(indata)
+h=indata{2,1}{1};fc28=indata{2,2}{1};Iy=indata{2,3}{1};Ix=indata{2,4}{1};
+Iw=indata{2,5}{1};n=indata{2,6}{1};
+E=11000*fc28^(1/3);
+[SA]=fSA(n);
+%calculating the mass matrix M
+mRT=258.184;mLF=263.789;mCF=263.789;
+M=MMat(n,mCF,mLF,mRT);
+%Compute the flexibility matrix S for translation x and y and tortion w
+%stodola method
+[Sxs,~,~,~,lx,Txs]=stodola(M,SA,h,E,Iy,n);
+[Sys,~,~,~,ly,Tys]=stodola(M,SA,h,E,Ix,n);
+a=25.2;b=11.4;%m dimensions of the building lenght and width by order
+MR=M*(a^2+b^2)/12;%tonnes*m^2 mass matrix of torsion
+[~,~,phi,~,~,Tw]=stodola(MR,SA,h,E,Iw,n);
+%modal participation
+[Mk,Mk1]=modalpar(M,phi,n);
+%orthogonality conditions
+[Kx,Ky]=cortog(M,phi,n,Sxs,Sys);
+%rayleight method
+[~,~,Txr,Tyr]=rayleight(M,phi,n,Kx,Ky);
+%continous flexible
+[tableCF,Mbat,hbat,~]=CF(n,h,Mk,Ix,Iy,E);
+data=[Txs(1),Tys(1),Tw(1),Txr,Tyr,Mbat,hbat];
+column={'Tx stodola','Ty stodola','Tw stodola','Tx rayleight','Ty rayleight','building mass','building height',};
+units={'secondes','secondes','secondes','secondes','secondes','tons','m',};
+row1={'values'};row2={'units'};
+table=ftable2(column,data,units,row1,row2);
+
+end
+
+function [S,SM,phi,P,lambda,T1]=stodola(M,SA,h,E,I,n)
+%function stodola method
+f=h^3/(6*E*1000*I);
+S=f*SA;
+SM=S*M;
+[phi,P]=eig(SM);
+lambda=diag(P);
+%les périodes propres en secondes 
+T=zeros(n);
+for i=1:n
+    for j=1:n
+        if i==j
+            T=lambda.^0.5*2*3.14;%secondes
+        end
+    end 
+end
+T1=T';
+end
+
+
