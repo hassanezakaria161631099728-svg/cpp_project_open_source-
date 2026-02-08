@@ -22,6 +22,10 @@ BeamData readInput(const std::string& filename)
         else if(word == "E") file >> d.E;
         else if(word == "I") file >> d.I;
         else if(word == "FLOORS") file >> d.nFloors;
+        else if(word == "Mass1") file >> d.M1;
+        else if(word == "Mass2") file >> d.M2;
+        else if(word == "Mass3") file >> d.M3;
+
     }
 
     return d;
@@ -32,7 +36,8 @@ BeamData readInput(const std::string& filename)
 
 void writeOutput(const std::string& filename,
                   double deflection,
-                  const std::vector<std::vector<double>>& K)
+                  const std::vector<std::vector<double>>& K,
+                  const std::vector<std::vector<double>>& M)
 {
     std::ofstream file(filename);
 
@@ -65,6 +70,26 @@ void writeOutput(const std::string& filename,
 
         for(int j=1; j<=n; j++)
             file << std::setw(10) << K[i-1][j-1];
+
+        file << "\n";
+    }
+    // ---- MASS MATRIX ----
+    file << "MASS MATRIX\n";
+    file << "----------------\n\n";
+    // Header
+    file << std::setw(10) << " ";
+    for(int j=1; j<=n; j++)
+        file << std::setw(10) << ("mod" + std::to_string(j));
+
+    file << "\n";
+
+    // Matrix rows
+    for(int i=1; i<=n; i++)
+    {
+        file << std::setw(10) << ("floor" + std::to_string(i));
+
+        for(int j=1; j<=n; j++)
+            file << std::setw(10) << M[i-1][j-1];
 
         file << "\n";
     }
