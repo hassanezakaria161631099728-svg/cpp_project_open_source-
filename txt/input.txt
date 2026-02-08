@@ -1,9 +1,0 @@
-# Beam properties
-w 20
-L 6
-E 2.0E11
-I 8.5E-6
-FLOORS 10
-
-
-
