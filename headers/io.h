@@ -5,5 +5,6 @@
 BeamData readInput(const std::string& filename);
 void writeOutput(const std::string& filename,
                  double deflection,
-                 const std::vector<std::vector<double>>& K);
+                 const std::vector<std::vector<double>>& K,
+                 const std::vector<std::vector<double>>& M);
 
