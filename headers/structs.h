@@ -5,6 +5,6 @@ struct BeamData {
     double L;
     double E;
     double I;
-    int nFloors; // new
-    std::vector<double> stations;
+    int nFloors;
+    double M1, M2, M3;
 };
