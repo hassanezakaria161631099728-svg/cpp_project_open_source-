@@ -1,10 +1,7 @@
 #pragma once
 #include <vector>
 struct BeamData {
-    double w;
-    double L;
-    double E;
-    double I;
-    int nFloors;
-    double M1, M2, M3;
+    double w,L,E,I; // deflection
+    int nFloors;    // stiffness Mass Dynamic matrices
+    double M1, M2, M3, h, EC, IX, IY;
 };
