@@ -353,7 +353,14 @@ for(size_t i=0;i<elements.size();i++){
     assembleGlobal(K,kg,elements[i].n1,elements[i].n2);
     assembleLoad(F,fe,elements[i].n1,elements[i].n2);
 }
+double K_original[12][12];
+double F_original[12];
 
+for(int i=0;i<12;i++){
+    F_original[i] = F[i];
+    for(int j=0;j<12;j++)
+        K_original[i][j] = K[i][j];
+}
 // nodal loads
 F[4]+= -1387;
 F[7]+= -1387;
@@ -365,6 +372,15 @@ applyBC(K,F,bc);
 double U[12];
 
 solveSystem(K,F,U);
+    
+double R[12] = {0};
+
+for(int i=0;i<12;i++){
+    for(int j=0;j<12;j++)
+        R[i] += K_original[i][j] * U[j];
+
+    R[i] -= F_original[i];
+}
 
 out << "\n=========================================\n";
 out << "        NODAL DISPLACEMENTS [cm]\n";
@@ -389,7 +405,29 @@ for (int i = 0; i < numNodes; i++)
         << setw(18) << rotz
         << "\n";
 }
+out << "\n=========================================\n";
+out << "        SUPPORT REACTIONS [kg & m]\n";
+out << "=========================================\n\n";
 
+out << setw(9)  << "Node"
+    << setw(18) << "Rx"
+    << setw(18) << "Ry"
+    << setw(18) << "Mz" << "\n";
+
+out << "--------------------------------------------------------------\n";
+
+vector<int> fixedNodes = {1,4};
+
+for(int node : fixedNodes){
+
+    int base = 3*(node-1);
+
+    out << setw(9)  << node
+        << setw(18) << R[base+0]
+        << setw(18) << R[base+1]
+        << setw(18) << R[base+2]
+        << "\n";
+}
 // -------- POST PROCESSING --------
 out << "\nELEMENT FORCES (LOCAL AXIS) [kg & m]\n";
 out << "--------------------------------------------------------------\n";
