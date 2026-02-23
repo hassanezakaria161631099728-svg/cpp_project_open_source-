@@ -322,7 +322,7 @@ out << setw(9)  << e.id << " "
 
 out << setw(9)  << e.id << " "
     << setw(9)  << e.n2 << " "
-    << setw(14) << -f_int[3] << " "
+    << setw(14) << f_int[3] << " "
     << setw(14) << f_int[4] << " "
     << setw(14) << f_int[5] << "\n";}
 
