@@ -11,6 +11,10 @@ the purpose of this project is for civil engineering to calculate the stiffness 
 notice: temp2  .depend  .cbp  .layout only exist in code blocks IDE 
 for vscode they don't exist they are not necessary in vscode IDE
 IDE integrated developpement environment 
+and I have organized files in separate three folders
+headers folder for .h files
+source folder for .cpp files including the main.cpp file
+txt folder for .txt files which are inputs and outputs
 
 if you need anymore details I forgot to mention here contact me by the available options:
 email: hassanezakaria161631099728@gmail.com
