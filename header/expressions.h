@@ -1,7 +1,10 @@
 #pragma once
-#include "structs.h"
 #include <vector>
-
+struct BeamData {
+    double w,L,E,I; // deflection
+    int nFloors;    // stiffness Mass Dynamic matrices
+    double M1, M2, M3, h, EC, IX, IY;
+};
 double computeDeflection(const BeamData& d, double I, double E);
 double computef(const BeamData& d, double I, double E);
 std::vector<std::vector<double>>
@@ -14,4 +17,5 @@ multiplymatmat(const std::vector<std::vector<double>>& A,
 std::vector<std::vector<double>>
 multiplyscamat(double a,
          const std::vector<std::vector<double>>& B);
+
 
