@@ -17,5 +17,11 @@ multiplymatmat(const std::vector<std::vector<double>>& A,
 std::vector<std::vector<double>>
 multiplyscamat(double a,
          const std::vector<std::vector<double>>& B);
+using Matrix = std::vector<std::vector<double>>;
+
+void eigenDecomposition(
+    const Matrix& A,
+    Matrix& B,
+    Matrix& C);
 
 
